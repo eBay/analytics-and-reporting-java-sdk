@@ -1,0 +1,10 @@
+{
+  "rest": {
+    "sell_analytics_v1_oas3": [
+      "findSellerStandardsProfiles",
+      "getCustomerServiceMetric",
+      "getSellerStandardsProfile",
+      "getTrafficReport"
+    ]
+  }
+}
