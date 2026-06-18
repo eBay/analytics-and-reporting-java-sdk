@@ -23,8 +23,10 @@ import java.util.HashSet;
  * Provides base URL for the Analytics API and optional fallback access token.
  */
 public final class AnalyticsAndReportingConfiguration {
-    // Base URL for Analytics API
-    private String analyticsBaseUrl = "https://api.ebay.com/sell/analytics/v1";
+    private static final String DEFAULT_ANALYTICS_BASE_URL = "https://api.ebay.com/sell/analytics/v1";
+
+    // Base URL for Analytics API (SEC-002: private final)
+    private final String analyticsBaseUrl;
 
     private String accessToken;  // static fallback; per-call token takes precedence
     private boolean diagnosticLogging = false;
@@ -35,12 +37,35 @@ public final class AnalyticsAndReportingConfiguration {
      */
     private RequestOptions defaultRequestOptions = new RequestOptions();
 
-    // Getters and setters
-    public String getAnalyticsBaseUrl() { return analyticsBaseUrl; }
-    public void setAnalyticsBaseUrl(String analyticsBaseUrl) { this.analyticsBaseUrl = analyticsBaseUrl; }
+    /**
+     * Default constructor using production eBay API endpoints.
+     */
+    public AnalyticsAndReportingConfiguration() {
+        this.analyticsBaseUrl = DEFAULT_ANALYTICS_BASE_URL;
+    }
 
-    public String getAccessToken() { return accessToken; }
+    /**
+     * Constructor accepting custom URL strings.
+     * All URLs are validated against the allowed host list (SEC-002).
+     *
+     * @param analyticsBaseUrl Base URL for the Analytics API
+     */
+    public AnalyticsAndReportingConfiguration(String analyticsBaseUrl) {
+        this.analyticsBaseUrl = validateHost(analyticsBaseUrl);
+    }
+
+    // Getters
+    public String getAnalyticsBaseUrl() { return analyticsBaseUrl; }
+
+    /**
+     * Sets the fallback access token for all SDK calls.
+     *
+     * <p><strong>Security note (SEC-002):</strong> The token string remains in JVM heap memory
+     * until garbage collected and cannot be proactively zeroed. Prefer per-call token passing
+     * for sensitive multi-tenant scenarios.
+     */
     public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
+    public String getAccessToken() { return accessToken; }
 
     public boolean isDiagnosticLogging() { return diagnosticLogging; }
     public void setDiagnosticLogging(boolean diagnosticLogging) { this.diagnosticLogging = diagnosticLogging; }
@@ -63,5 +88,17 @@ public final class AnalyticsAndReportingConfiguration {
         } catch (Exception e) {
             return "api.ebay.com"; // fallback
         }
+    }
+
+    private String validateHost(String url) {
+        try {
+            String host = new java.net.URI(url).getHost();
+            if (host == null || !getAllowedHosts().contains(host)) {
+                throw new IllegalArgumentException("URL host not in allowed list: " + url);
+            }
+        } catch (java.net.URISyntaxException e) {
+            throw new IllegalArgumentException("Invalid URL: " + url, e);
+        }
+        return url;
     }
 }

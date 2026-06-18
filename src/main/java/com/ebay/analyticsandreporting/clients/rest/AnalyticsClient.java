@@ -59,13 +59,12 @@ public final class AnalyticsClient {
      */
     public CompletableFuture<FindSellerStandardsProfilesResponse> findSellerStandardsProfilesAsync(
             String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.sellerStandardsProfile().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
             });
-        });
+        }));
     }
 
     /**
@@ -79,8 +78,9 @@ public final class AnalyticsClient {
      */
     public CompletableFuture<StandardsProfile> getSellerStandardsProfileAsync(
             String program, String cycle, String accessToken, RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("program", program);
+        Params.requireValid("cycle", cycle);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.sellerStandardsProfile()
                 .byProgram(program)
@@ -88,7 +88,7 @@ public final class AnalyticsClient {
                 .get(config -> {
                     headers.forEach((k, v) -> config.headers.add(k, v));
                 });
-        });
+        }));
     }
 
     // ── Customer Service Metric ───────────────────────────────────────────
@@ -109,8 +109,9 @@ public final class AnalyticsClient {
             String evaluationMarketplaceId,
             String accessToken,
             RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        Params.requireValid("customerServiceMetricType", customerServiceMetricType);
+        Params.requireValid("evaluationType", evaluationType);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.customerServiceMetric()
                 .byCustomer_service_metric_type(customerServiceMetricType)
@@ -121,7 +122,7 @@ public final class AnalyticsClient {
                         config.queryParameters.evaluationMarketplaceId = evaluationMarketplaceId;
                     }
                 });
-        });
+        }));
     }
 
     // ── Traffic Report ────────────────────────────────────────────────────
@@ -144,8 +145,7 @@ public final class AnalyticsClient {
             String sort,
             String accessToken,
             RequestOptions requestOptions) {
-        return CompletableFuture.supplyAsync(() -> {
-            TokenContext.CURRENT.set(accessToken);
+        return CompletableFuture.supplyAsync(() -> TokenContext.runWith(accessToken, () -> {
             Map<String, String> headers = mergedHeaders(requestOptions);
             return kiota.trafficReport().get(config -> {
                 headers.forEach((k, v) -> config.headers.add(k, v));
@@ -162,6 +162,6 @@ public final class AnalyticsClient {
                     config.queryParameters.sort = sort;
                 }
             });
-        });
+        }));
     }
 }
