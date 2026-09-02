@@ -10,11 +10,11 @@ echo "Generating Analytics and Reporting Java SDK with Kiota..."
 # Clean previous generated code
 rm -rf src/main/java/com/ebay/analyticsandreporting/generated
 
-# Generate from sell_analytics_v1_oas3.yaml
+# Generate from analytics.yaml
 echo "Generating Analytics API client..."
 kiota generate \
   -l java \
-  -d specs/sell_analytics_v1_oas3.yaml \
+  -d specs/openapi/analytics.yaml \
   -c AnalyticsApiClient \
   -n com.ebay.analyticsandreporting.generated.analytics \
   -o src/main/java/com/ebay/analyticsandreporting/generated/analytics \
