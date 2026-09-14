@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type that defines the fields of the individual record of the report.
+ * This type defines the fields of the individual record of the report.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class Record implements AdditionalDataHolder, Parsable {

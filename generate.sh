@@ -20,7 +20,7 @@ echo "Generating Analytics and Reporting Java SDK with Kiota..."
 rm -rf src/main/java/com/ebay/analyticsandreporting/generated
 
 echo "Generating AnalyticsApiClient..."
-kiota generate -l java -d specs/openapi/analytics.yaml \
+kiota generate -l java -d specs/openapi/analytics.json \
   -c AnalyticsApiClient -n com.ebay.analyticsandreporting.generated.analytics \
   -o src/main/java/com/ebay/analyticsandreporting/generated/analytics --ebc --co
 

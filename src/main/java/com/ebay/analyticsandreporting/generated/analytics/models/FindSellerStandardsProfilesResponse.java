@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * The response container for a list of seller profiles.
+ * This type returns a list of seller profiles.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class FindSellerStandardsProfilesResponse implements AdditionalDataHolder, Parsable {

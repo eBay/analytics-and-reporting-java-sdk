@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "3E82651250557739F954C8C4912FC278769230170964A9B3A506910AFDB1C5C48BDFC9F782606CF257912EB1AF62D698B98E14FFD948F3F1E2AC840E1C825E59",
-  "descriptionLocation": "../../../../../../../../specs/openapi/analytics.yaml",
+  "descriptionHash": "94C5451545A4F82163262F70632E6B237A2A3E5827CA9205E9EB0236A2DD315745E40F51652D2BFCEDF6339869CB7F5D7B0194E646D0BF104CC3BEAB69953E88",
+  "descriptionLocation": "../../../../../../../../specs/openapi/analytics.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.31.1",
+  "kiotaVersion": "1.35.0",
   "clientClassName": "AnalyticsApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "com.ebay.analyticsandreporting.generated.analytics",
@@ -30,5 +30,6 @@
   ],
   "includePatterns": [],
   "excludePatterns": [],
-  "disabledValidationRules": []
+  "disabledValidationRules": [],
+  "allowedExternalOrigins": []
 }

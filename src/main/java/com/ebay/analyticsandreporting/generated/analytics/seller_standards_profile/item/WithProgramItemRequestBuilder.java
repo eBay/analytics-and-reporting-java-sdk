@@ -26,7 +26,7 @@ import java.util.Objects;
 public class WithProgramItemRequestBuilder extends BaseRequestBuilder {
     /**
      * Gets an item from the com.ebay.analyticsandreporting.generated.analytics.seller_standards_profile.item.item collection
-     * @param cycle This path parameter is used to specify the cycle for which metrics and metadata will be retrieved.&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/api-docs/sell/analytics/types/ssp:CycleTypeEnum&quot; target=&quot;_blank&quot;&gt;CycleTypeEnum&lt;/a&gt; for a list of supported values.
+     * @param cycle This path parameter is used to specify the cycle for which metrics and metadata will be retrieved.&lt;br&gt;&lt;br&gt;See &lt;a href=&quot;/develop/api/sell/analytics_api#sell-analytics_api-seller_standards_profile-getsellerstandardsprofile.cycletypeenum&quot;&gt;CycleTypeEnum&lt;/a&gt; for a list of supported values.
      * @return a {@link WithCycleItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

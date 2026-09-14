@@ -31,21 +31,21 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingAdjustmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller.
      */
-    private String adjustment;
+    private RatingAdjustmentTypeEnum adjustment;
     /**
-     * This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:BenchmarkTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;.
      */
-    private String basis;
+    private BenchmarkTypeEnum basis;
     /**
-     * This complex type defines the fields that comprise the benchmark against which the seller&apos;s performance is compared. The comparison determines the seller&apos;s rating for the metric.
+     * This field contains the benchmark data.
      */
     private BenchmarkMetadata metadata;
     /**
-     * This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating.
      */
-    private String rating;
+    private RatingTypeEnum rating;
     /**
      * Instantiates a new {@link MetricBenchmark} and sets the default values.
      */
@@ -71,19 +71,19 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the adjustment property value. If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingAdjustmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the adjustment property value. If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller.
+     * @return a {@link RatingAdjustmentTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getAdjustment() {
+    public RatingAdjustmentTypeEnum getAdjustment() {
         return this.adjustment;
     }
     /**
-     * Gets the basis property value. This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:BenchmarkTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the basis property value. This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;.
+     * @return a {@link BenchmarkTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getBasis() {
+    public BenchmarkTypeEnum getBasis() {
         return this.basis;
     }
     /**
@@ -93,14 +93,14 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
-        deserializerMap.put("adjustment", (n) -> { this.setAdjustment(n.getStringValue()); });
-        deserializerMap.put("basis", (n) -> { this.setBasis(n.getStringValue()); });
+        deserializerMap.put("adjustment", (n) -> { this.setAdjustment(n.getEnumValue(RatingAdjustmentTypeEnum::forValue)); });
+        deserializerMap.put("basis", (n) -> { this.setBasis(n.getEnumValue(BenchmarkTypeEnum::forValue)); });
         deserializerMap.put("metadata", (n) -> { this.setMetadata(n.getObjectValue(BenchmarkMetadata::createFromDiscriminatorValue)); });
-        deserializerMap.put("rating", (n) -> { this.setRating(n.getStringValue()); });
+        deserializerMap.put("rating", (n) -> { this.setRating(n.getEnumValue(RatingTypeEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the metadata property value. This complex type defines the fields that comprise the benchmark against which the seller&apos;s performance is compared. The comparison determines the seller&apos;s rating for the metric.
+     * Gets the metadata property value. This field contains the benchmark data.
      * @return a {@link BenchmarkMetadata}
      */
     @jakarta.annotation.Nullable
@@ -108,11 +108,11 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
         return this.metadata;
     }
     /**
-     * Gets the rating property value. This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the rating property value. This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating.
+     * @return a {@link RatingTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getRating() {
+    public RatingTypeEnum getRating() {
         return this.rating;
     }
     /**
@@ -121,10 +121,10 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("adjustment", this.getAdjustment());
-        writer.writeStringValue("basis", this.getBasis());
+        writer.writeEnumValue("adjustment", this.getAdjustment());
+        writer.writeEnumValue("basis", this.getBasis());
         writer.writeObjectValue("metadata", this.getMetadata());
-        writer.writeStringValue("rating", this.getRating());
+        writer.writeEnumValue("rating", this.getRating());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -135,31 +135,31 @@ public class MetricBenchmark implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the adjustment property value. If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingAdjustmentTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the adjustment property value. If this field is present, it indicates that the rating given to the seller was &quot;adjusted&quot; for one reason or another.  &lt;br&gt;&lt;br&gt;If eBay determines that the normal rating of a seller is impacted by circumstances beyond their control, they can issue an override to adjust the rating given to the seller.
      * @param value Value to set for the adjustment property.
      */
-    public void setAdjustment(@jakarta.annotation.Nullable final String value) {
+    public void setAdjustment(@jakarta.annotation.Nullable final RatingAdjustmentTypeEnum value) {
         this.adjustment = value;
     }
     /**
-     * Sets the basis property value. This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:BenchmarkTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the basis property value. This field returns the &quot;basis&quot; by which the benchmark is calculated for the customer service metric type. &lt;br&gt;&lt;br&gt;Currently, the only supported basis is &lt;code&gt;PEER_BENCHMARK&lt;/code&gt;.
      * @param value Value to set for the basis property.
      */
-    public void setBasis(@jakarta.annotation.Nullable final String value) {
+    public void setBasis(@jakarta.annotation.Nullable final BenchmarkTypeEnum value) {
         this.basis = value;
     }
     /**
-     * Sets the metadata property value. This complex type defines the fields that comprise the benchmark against which the seller&apos;s performance is compared. The comparison determines the seller&apos;s rating for the metric.
+     * Sets the metadata property value. This field contains the benchmark data.
      * @param value Value to set for the metadata property.
      */
     public void setMetadata(@jakarta.annotation.Nullable final BenchmarkMetadata value) {
         this.metadata = value;
     }
     /**
-     * Sets the rating property value. This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:RatingTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the rating property value. This field returns seller&apos;s rating for the customer service metric.  &lt;br&gt;&lt;br&gt;The rating is set to a value that equals the relative deviation between the seller&apos;s metric value and the benchmark value for the customer service metric.  &lt;br&gt;&lt;br&gt;Deviation values range from &lt;code&gt;LOW&lt;/code&gt; to &lt;code&gt;VERY HIGH&lt;/code&gt;, and the lower the deviation, the better the seller rating.
      * @param value Value to set for the rating property.
      */
-    public void setRating(@jakarta.annotation.Nullable final String value) {
+    public void setRating(@jakarta.annotation.Nullable final RatingTypeEnum value) {
         this.rating = value;
     }
 }

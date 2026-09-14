@@ -31,7 +31,7 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * End date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * The end date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
      */
     private String endDate;
     /**
@@ -39,9 +39,9 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
      */
     private String evaluationDate;
     /**
-     * This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:EvaluationTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt;
      */
-    private String evaluationType;
+    private EvaluationTypeEnum evaluationType;
     /**
      * The start date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-04T07:09:00.000Z&lt;/code&gt;
      */
@@ -71,7 +71,7 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the endDate property value. End date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * Gets the endDate property value. The end date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -87,11 +87,11 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         return this.evaluationDate;
     }
     /**
-     * Gets the evaluationType property value. This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:EvaluationTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the evaluationType property value. This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt;
+     * @return a {@link EvaluationTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getEvaluationType() {
+    public EvaluationTypeEnum getEvaluationType() {
         return this.evaluationType;
     }
     /**
@@ -103,7 +103,7 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(4);
         deserializerMap.put("endDate", (n) -> { this.setEndDate(n.getStringValue()); });
         deserializerMap.put("evaluationDate", (n) -> { this.setEvaluationDate(n.getStringValue()); });
-        deserializerMap.put("evaluationType", (n) -> { this.setEvaluationType(n.getStringValue()); });
+        deserializerMap.put("evaluationType", (n) -> { this.setEvaluationType(n.getEnumValue(EvaluationTypeEnum::forValue)); });
         deserializerMap.put("startDate", (n) -> { this.setStartDate(n.getStringValue()); });
         return deserializerMap;
     }
@@ -123,7 +123,7 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         Objects.requireNonNull(writer);
         writer.writeStringValue("endDate", this.getEndDate());
         writer.writeStringValue("evaluationDate", this.getEvaluationDate());
-        writer.writeStringValue("evaluationType", this.getEvaluationType());
+        writer.writeEnumValue("evaluationType", this.getEvaluationType());
         writer.writeStringValue("startDate", this.getStartDate());
         writer.writeAdditionalData(this.getAdditionalData());
     }
@@ -135,7 +135,7 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the endDate property value. End date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * Sets the endDate property value. The end date and time of the transaction lookback range. All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
      * @param value Value to set for the endDate property.
      */
     public void setEndDate(@jakarta.annotation.Nullable final String value) {
@@ -149,10 +149,10 @@ public class EvaluationCycle implements AdditionalDataHolder, Parsable {
         this.evaluationDate = value;
     }
     /**
-     * Sets the evaluationType property value. This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt; For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/api:EvaluationTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the evaluationType property value. This field specifies the transaction &lt;i&gt;lookback period&lt;/i&gt; used for the evaluation. &lt;br&gt;&lt;br&gt;The &lt;b&gt;evaluation_type&lt;/b&gt; value specified in the request is returned in this field. There are two possible values:  &lt;ul&gt;&lt;li&gt;&lt;code&gt;CURRENT&lt;/code&gt; &amp;ndash; A monthly evaluation that occurs on the 20th of every month.&lt;/li&gt; &lt;li&gt;&lt;code&gt;PROJECTED&lt;/code&gt; &amp;ndash; A daily evaluation that provides a projection of how the seller is currently performing with regards to the upcoming evaluation period.&lt;/li&gt;&lt;/ul&gt;
      * @param value Value to set for the evaluationType property.
      */
-    public void setEvaluationType(@jakarta.annotation.Nullable final String value) {
+    public void setEvaluationType(@jakarta.annotation.Nullable final EvaluationTypeEnum value) {
         this.evaluationType = value;
     }
     /**

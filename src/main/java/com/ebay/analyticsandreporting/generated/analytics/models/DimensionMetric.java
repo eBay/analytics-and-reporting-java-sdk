@@ -31,13 +31,13 @@ public class DimensionMetric implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The fields in this complex type define the dimension, or attributes, by which the associated customer service metric and benchmark data is measured.  &lt;br&gt;&lt;br&gt;The value of &lt;b&gt;dimensionKey&lt;/b&gt; gets set according to the configuration of the input request. The &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; pair further define dimension under the key.
+     * This type defines the &quot;dimension,&quot; or attributes, against which the associated customer service metric values and benchmark ratings are based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;dimensionKey&lt;/b&gt; value is set according to the &lt;b&gt;customer_service_metric_type&lt;/b&gt; request parameter and the values in the associated &lt;b&gt;name&lt;/b&gt;/&lt;b&gt;value&lt;/b&gt; pairs relate to the &lt;b&gt;dimensionKey&lt;/b&gt; that&apos;s being used to calculate the benchmark rating.
      */
     private Dimension dimension;
     /**
      * This is a list of &lt;b&gt;Metric&lt;/b&gt; elements where each element contains data and information related to the transactions grouped by the associated &lt;b&gt;dimension&lt;/b&gt;.
      */
-    private java.util.List<Metric> metrics;
+    private java.util.List<ApiMetric> metrics;
     /**
      * Instantiates a new {@link DimensionMetric} and sets the default values.
      */
@@ -63,7 +63,7 @@ public class DimensionMetric implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the dimension property value. The fields in this complex type define the dimension, or attributes, by which the associated customer service metric and benchmark data is measured.  &lt;br&gt;&lt;br&gt;The value of &lt;b&gt;dimensionKey&lt;/b&gt; gets set according to the configuration of the input request. The &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; pair further define dimension under the key.
+     * Gets the dimension property value. This type defines the &quot;dimension,&quot; or attributes, against which the associated customer service metric values and benchmark ratings are based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;dimensionKey&lt;/b&gt; value is set according to the &lt;b&gt;customer_service_metric_type&lt;/b&gt; request parameter and the values in the associated &lt;b&gt;name&lt;/b&gt;/&lt;b&gt;value&lt;/b&gt; pairs relate to the &lt;b&gt;dimensionKey&lt;/b&gt; that&apos;s being used to calculate the benchmark rating.
      * @return a {@link Dimension}
      */
     @jakarta.annotation.Nullable
@@ -78,15 +78,15 @@ public class DimensionMetric implements AdditionalDataHolder, Parsable {
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(2);
         deserializerMap.put("dimension", (n) -> { this.setDimension(n.getObjectValue(Dimension::createFromDiscriminatorValue)); });
-        deserializerMap.put("metrics", (n) -> { this.setMetrics(n.getCollectionOfObjectValues(Metric::createFromDiscriminatorValue)); });
+        deserializerMap.put("metrics", (n) -> { this.setMetrics(n.getCollectionOfObjectValues(ApiMetric::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
      * Gets the metrics property value. This is a list of &lt;b&gt;Metric&lt;/b&gt; elements where each element contains data and information related to the transactions grouped by the associated &lt;b&gt;dimension&lt;/b&gt;.
-     * @return a {@link java.util.List<Metric>}
+     * @return a {@link java.util.List<ApiMetric>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Metric> getMetrics() {
+    public java.util.List<ApiMetric> getMetrics() {
         return this.metrics;
     }
     /**
@@ -107,7 +107,7 @@ public class DimensionMetric implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the dimension property value. The fields in this complex type define the dimension, or attributes, by which the associated customer service metric and benchmark data is measured.  &lt;br&gt;&lt;br&gt;The value of &lt;b&gt;dimensionKey&lt;/b&gt; gets set according to the configuration of the input request. The &lt;b&gt;name&lt;/b&gt; and &lt;b&gt;value&lt;/b&gt; pair further define dimension under the key.
+     * Sets the dimension property value. This type defines the &quot;dimension,&quot; or attributes, against which the associated customer service metric values and benchmark ratings are based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;dimensionKey&lt;/b&gt; value is set according to the &lt;b&gt;customer_service_metric_type&lt;/b&gt; request parameter and the values in the associated &lt;b&gt;name&lt;/b&gt;/&lt;b&gt;value&lt;/b&gt; pairs relate to the &lt;b&gt;dimensionKey&lt;/b&gt; that&apos;s being used to calculate the benchmark rating.
      * @param value Value to set for the dimension property.
      */
     public void setDimension(@jakarta.annotation.Nullable final Dimension value) {
@@ -117,7 +117,7 @@ public class DimensionMetric implements AdditionalDataHolder, Parsable {
      * Sets the metrics property value. This is a list of &lt;b&gt;Metric&lt;/b&gt; elements where each element contains data and information related to the transactions grouped by the associated &lt;b&gt;dimension&lt;/b&gt;.
      * @param value Value to set for the metrics property.
      */
-    public void setMetrics(@jakarta.annotation.Nullable final java.util.List<Metric> value) {
+    public void setMetrics(@jakarta.annotation.Nullable final java.util.List<ApiMetric> value) {
         this.metrics = value;
     }
 }
