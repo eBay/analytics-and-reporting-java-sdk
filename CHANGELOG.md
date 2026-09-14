@@ -2,11 +2,12 @@
 
 ## 0.2.0 (09/14/2026)
 
-Consolidated experimental release.
+### Breaking changes
 
-- REST clients: `AnalyticsClient`.
-- Includes the current API definitions, regenerated clients, and wrapper updates.
-- Preserves existing wrapper parameter order where signatures allow it.
-- Aligns wrapper query parameter types with the generated Kiota clients.
+#### Changed signatures
 
-This entry establishes the consolidated experimental baseline.
+`AnalyticsClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `getSellerStandardsProfileAsync` | `(String program, String cycle, String accessToken, RequestOptions requestOptions)` | `(String cycle, String program, String accessToken, RequestOptions requestOptions)` |
