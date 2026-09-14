@@ -15,80 +15,21 @@
 package com.ebay.analyticsandreporting.configuration;
 
 import jakarta.annotation.Nullable;
-import java.net.URI;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Configuration for the Analytics and Reporting SDK.
- * Provides base URL for the Analytics API and optional fallback access token.
- */
 public final class AnalyticsAndReportingConfiguration {
-    private static final String DEFAULT_ANALYTICS_BASE_URL = "https://api.ebay.com/sell/analytics/v1";
-
-    // Base URL for Analytics API (SEC-002: private final)
-    private final String analyticsBaseUrl;
-
-    private @Nullable String accessToken;  // static fallback; per-call token takes precedence
-    private boolean diagnosticLogging = false;
-
-    /**
-     * Default request options (headers) applied to all SDK calls.
-     * Per-call RequestOptions will override these.
-     */
+    private @Nullable String accessToken;
     private RequestOptions defaultRequestOptions = new RequestOptions();
 
-    /**
-     * Default constructor using production eBay API endpoints.
-     */
+    private final String analyticsBaseUrl;
+
     public AnalyticsAndReportingConfiguration() {
-        this.analyticsBaseUrl = DEFAULT_ANALYTICS_BASE_URL;
+        this.analyticsBaseUrl = "https://api.ebay.com/sell/analytics/v1";
     }
 
-    /**
-     * Constructor accepting custom URL strings.
-     * All URLs are validated against the allowed host list (SEC-002).
-     *
-     * @param analyticsBaseUrl Base URL for the Analytics API
-     */
     public AnalyticsAndReportingConfiguration(String analyticsBaseUrl) {
         this.analyticsBaseUrl = validateHost(analyticsBaseUrl);
-    }
-
-    // Getters
-    public String getAnalyticsBaseUrl() { return analyticsBaseUrl; }
-
-    /**
-     * Sets the fallback access token for all SDK calls.
-     *
-     * <p><strong>Security note (SEC-002):</strong> The token string remains in JVM heap memory
-     * until garbage collected and cannot be proactively zeroed. Prefer per-call token passing
-     * for sensitive multi-tenant scenarios.
-     */
-    public void setAccessToken(@Nullable String accessToken) { this.accessToken = accessToken; }
-    public @Nullable String getAccessToken() { return accessToken; }
-
-    public boolean isDiagnosticLogging() { return diagnosticLogging; }
-    public void setDiagnosticLogging(boolean diagnosticLogging) { this.diagnosticLogging = diagnosticLogging; }
-
-    public RequestOptions getDefaultRequestOptions() { return defaultRequestOptions; }
-    public void setDefaultRequestOptions(RequestOptions defaultRequestOptions) { this.defaultRequestOptions = defaultRequestOptions; }
-
-    /**
-     * All hostnames tokens may be sent to; used by AllowedHostsValidator.
-     */
-    public Set<String> getAllowedHosts() {
-        Set<String> hosts = new HashSet<>();
-        hosts.add(extractHost(analyticsBaseUrl));
-        return hosts;
-    }
-
-    private String extractHost(String url) {
-        try {
-            return URI.create(url).getHost();
-        } catch (Exception e) {
-            return "api.ebay.com"; // fallback
-        }
     }
 
     private String validateHost(String url) {
@@ -101,5 +42,35 @@ public final class AnalyticsAndReportingConfiguration {
             throw new IllegalArgumentException("Invalid URL: " + url, e);
         }
         return url;
+    }
+
+    /**
+     * Sets the OAuth Bearer token used for API calls when no per-call token is provided.
+     *
+     * <p><b>Security note:</b> The token is stored as a Java {@code String} and will remain
+     * in heap memory until garbage collected. To minimize exposure: do not log this
+     * configuration object, null out the token reference when it is no longer needed,
+     * and avoid storing the configuration longer than the client lifecycle.
+     */
+    public void setAccessToken(@Nullable String token) {
+        this.accessToken = token;
+    }
+
+    public @Nullable String getAccessToken() {
+        return accessToken;
+    }
+
+    public RequestOptions getDefaultRequestOptions() {
+        return defaultRequestOptions;
+    }
+
+    public Set<String> getAllowedHosts() {
+        Set<String> hosts = new HashSet<>();
+        hosts.add("api.ebay.com");
+        return hosts;
+    }
+
+    public String getAnalyticsBaseUrl() {
+        return analyticsBaseUrl;
     }
 }

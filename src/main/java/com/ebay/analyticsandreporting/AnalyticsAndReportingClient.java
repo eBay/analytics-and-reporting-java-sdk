@@ -15,8 +15,8 @@
 package com.ebay.analyticsandreporting;
 
 import com.ebay.analyticsandreporting.clients.rest.AnalyticsClient;
-import com.ebay.analyticsandreporting.configuration.AnalyticsAndReportingConfiguration;
 import com.ebay.analyticsandreporting.configuration.KiotaAuthProvider;
+import com.ebay.analyticsandreporting.configuration.AnalyticsAndReportingConfiguration;
 import com.ebay.analyticsandreporting.generated.analytics.AnalyticsApiClient;
 import com.microsoft.kiota.authentication.BaseBearerTokenAuthenticationProvider;
 import com.microsoft.kiota.http.OkHttpRequestAdapter;
@@ -26,17 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Main facade for the Analytics and Reporting SDK.
- * Provides unified access to the Sell Analytics API.
- *
- * <pre>{@code
- * var config = new AnalyticsAndReportingConfiguration();
- * config.setAccessToken("your-token");
- *
- * try (var sdk = new AnalyticsAndReportingClient(config)) {
- *     var profiles = sdk.analytics.findSellerStandardsProfiles(null, null);
- *     System.out.println(profiles);
- * }
- * }</pre>
  */
 public final class AnalyticsAndReportingClient implements Closeable {
     private final OkHttpClient sharedHttpClient;
@@ -44,27 +33,11 @@ public final class AnalyticsAndReportingClient implements Closeable {
     public final AnalyticsClient analytics;
 
     public AnalyticsAndReportingClient(AnalyticsAndReportingConfiguration config) {
-        // Shared OkHttpClient for all REST clients (SEC-005: explicit timeouts)
         this.sharedHttpClient = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .build();
-
-        var authProvider = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config));
-
-        // Analytics API client
-        var analyticsAdapter = new OkHttpRequestAdapter(authProvider, null, null, sharedHttpClient);
-        analyticsAdapter.setBaseUrl(config.getAnalyticsBaseUrl());
-        this.analytics = new AnalyticsClient(new AnalyticsApiClient(analyticsAdapter), config);
-    }
-
-    /**
-     * Constructor with custom OkHttpClient.
-     * Useful for testing or custom HTTP configuration.
-     */
-    public AnalyticsAndReportingClient(AnalyticsAndReportingConfiguration config, OkHttpClient httpClient) {
-        this.sharedHttpClient = httpClient;
 
         var authProvider = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config));
 
