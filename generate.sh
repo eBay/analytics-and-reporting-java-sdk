@@ -1,31 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Generate Analytics and Reporting Java SDK using Kiota
-# Run this script from the analytics-and-reporting directory
+# Copyright 2026 eBay Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-set -e
+set -euo pipefail
 
 echo "Generating Analytics and Reporting Java SDK with Kiota..."
-
-# Clean previous generated code
 rm -rf src/main/java/com/ebay/analyticsandreporting/generated
 
-# Generate from analytics.yaml
-echo "Generating Analytics API client..."
-kiota generate \
-  -l java \
-  -d specs/openapi/analytics.yaml \
-  -c AnalyticsApiClient \
-  -n com.ebay.analyticsandreporting.generated.analytics \
-  -o src/main/java/com/ebay/analyticsandreporting/generated/analytics \
-  --ebc --co
+echo "Generating AnalyticsApiClient..."
+kiota generate -l java -d specs/openapi/analytics.yaml \
+  -c AnalyticsApiClient -n com.ebay.analyticsandreporting.generated.analytics \
+  -o src/main/java/com/ebay/analyticsandreporting/generated/analytics --ebc --co
 
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./src
-
 echo "Code generation complete!"
-echo "Next steps:"
-echo "  1. Create wrapper clients in src/main/java/com/ebay/analyticsandreporting/clients/rest/"
-echo "  2. Create configuration classes"
-echo "  3. Create main facade AnalyticsAndReportingClient.java"
-echo "  4. mvn clean install"
