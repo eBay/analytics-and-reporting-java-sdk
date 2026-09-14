@@ -14,6 +14,7 @@
 
 package com.ebay.analyticsandreporting.configuration;
 
+import jakarta.annotation.Nullable;
 import java.net.URI;
 import java.util.Set;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public final class AnalyticsAndReportingConfiguration {
     // Base URL for Analytics API (SEC-002: private final)
     private final String analyticsBaseUrl;
 
-    private String accessToken;  // static fallback; per-call token takes precedence
+    private @Nullable String accessToken;  // static fallback; per-call token takes precedence
     private boolean diagnosticLogging = false;
 
     /**
@@ -64,8 +65,8 @@ public final class AnalyticsAndReportingConfiguration {
      * until garbage collected and cannot be proactively zeroed. Prefer per-call token passing
      * for sensitive multi-tenant scenarios.
      */
-    public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
-    public String getAccessToken() { return accessToken; }
+    public void setAccessToken(@Nullable String accessToken) { this.accessToken = accessToken; }
+    public @Nullable String getAccessToken() { return accessToken; }
 
     public boolean isDiagnosticLogging() { return diagnosticLogging; }
     public void setDiagnosticLogging(boolean diagnosticLogging) { this.diagnosticLogging = diagnosticLogging; }
