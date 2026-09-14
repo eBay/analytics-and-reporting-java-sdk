@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type the defines the metadata information of the report. This includes the headers and the individual metadata records.
+ * This type defines the metadata information of the report. This includes the headers and the individual metadata records.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class Metadata implements AdditionalDataHolder, Parsable {
@@ -31,7 +31,7 @@ public class Metadata implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Type that defines the metadata header fields.
+     * The container that returns the &lt;b&gt;dimensionKeys&lt;/b&gt; and &lt;b&gt;metrics&lt;/b&gt; headers for the report.
      */
     private MetadataHeader metadataHeader;
     /**
@@ -74,7 +74,7 @@ public class Metadata implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the metadataHeader property value. Type that defines the metadata header fields.
+     * Gets the metadataHeader property value. The container that returns the &lt;b&gt;dimensionKeys&lt;/b&gt; and &lt;b&gt;metrics&lt;/b&gt; headers for the report.
      * @return a {@link MetadataHeader}
      */
     @jakarta.annotation.Nullable
@@ -107,7 +107,7 @@ public class Metadata implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the metadataHeader property value. Type that defines the metadata header fields.
+     * Sets the metadataHeader property value. The container that returns the &lt;b&gt;dimensionKeys&lt;/b&gt; and &lt;b&gt;metrics&lt;/b&gt; headers for the report.
      * @param value Value to set for the metadataHeader property.
      */
     public void setMetadataHeader(@jakarta.annotation.Nullable final MetadataHeader value) {

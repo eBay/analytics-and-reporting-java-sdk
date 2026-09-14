@@ -35,13 +35,13 @@ public class GetCustomerServiceMetricResponse implements AdditionalDataHolder, P
      */
     private java.util.List<DimensionMetric> dimensionMetrics;
     /**
-     * This complex type describes the start and end dates of the of the time period over which the associated benchmark is computed.  &lt;br&gt;&lt;br&gt;All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * This complex type defines the evaluation type (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;) and the transaction lookback period used to calculate the seller&apos;s customer service metric.
      */
     private EvaluationCycle evaluationCycle;
     /**
-     * The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot;&gt;Service metrics policy&lt;/a&gt; page. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/bas:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot; target=&quot;_blank&quot;&gt;Service metrics policy&lt;/a&gt; page.
      */
-    private String marketplaceId;
+    private MarketplaceIdEnum marketplaceId;
     /**
      * Instantiates a new {@link GetCustomerServiceMetricResponse} and sets the default values.
      */
@@ -75,7 +75,7 @@ public class GetCustomerServiceMetricResponse implements AdditionalDataHolder, P
         return this.dimensionMetrics;
     }
     /**
-     * Gets the evaluationCycle property value. This complex type describes the start and end dates of the of the time period over which the associated benchmark is computed.  &lt;br&gt;&lt;br&gt;All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * Gets the evaluationCycle property value. This complex type defines the evaluation type (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;) and the transaction lookback period used to calculate the seller&apos;s customer service metric.
      * @return a {@link EvaluationCycle}
      */
     @jakarta.annotation.Nullable
@@ -91,15 +91,15 @@ public class GetCustomerServiceMetricResponse implements AdditionalDataHolder, P
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
         deserializerMap.put("dimensionMetrics", (n) -> { this.setDimensionMetrics(n.getCollectionOfObjectValues(DimensionMetric::createFromDiscriminatorValue)); });
         deserializerMap.put("evaluationCycle", (n) -> { this.setEvaluationCycle(n.getObjectValue(EvaluationCycle::createFromDiscriminatorValue)); });
-        deserializerMap.put("marketplaceId", (n) -> { this.setMarketplaceId(n.getStringValue()); });
+        deserializerMap.put("marketplaceId", (n) -> { this.setMarketplaceId(n.getEnumValue(MarketplaceIdEnum::forValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the marketplaceId property value. The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot;&gt;Service metrics policy&lt;/a&gt; page. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/bas:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the marketplaceId property value. The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot; target=&quot;_blank&quot;&gt;Service metrics policy&lt;/a&gt; page.
+     * @return a {@link MarketplaceIdEnum}
      */
     @jakarta.annotation.Nullable
-    public String getMarketplaceId() {
+    public MarketplaceIdEnum getMarketplaceId() {
         return this.marketplaceId;
     }
     /**
@@ -110,7 +110,7 @@ public class GetCustomerServiceMetricResponse implements AdditionalDataHolder, P
         Objects.requireNonNull(writer);
         writer.writeCollectionOfObjectValues("dimensionMetrics", this.getDimensionMetrics());
         writer.writeObjectValue("evaluationCycle", this.getEvaluationCycle());
-        writer.writeStringValue("marketplaceId", this.getMarketplaceId());
+        writer.writeEnumValue("marketplaceId", this.getMarketplaceId());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -128,17 +128,17 @@ public class GetCustomerServiceMetricResponse implements AdditionalDataHolder, P
         this.dimensionMetrics = value;
     }
     /**
-     * Sets the evaluationCycle property value. This complex type describes the start and end dates of the of the time period over which the associated benchmark is computed.  &lt;br&gt;&lt;br&gt;All timestamps are based on Mountain Standard Time (MST).  &lt;br&gt;&lt;br&gt;The timestamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.
+     * Sets the evaluationCycle property value. This complex type defines the evaluation type (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;) and the transaction lookback period used to calculate the seller&apos;s customer service metric.
      * @param value Value to set for the evaluationCycle property.
      */
     public void setEvaluationCycle(@jakarta.annotation.Nullable final EvaluationCycle value) {
         this.evaluationCycle = value;
     }
     /**
-     * Sets the marketplaceId property value. The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot;&gt;Service metrics policy&lt;/a&gt; page. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/bas:MarketplaceIdEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the marketplaceId property value. The eBay marketplace ID of the marketplace upon which the customer service metric evaluation is based.  &lt;br&gt;&lt;br&gt;The &lt;b&gt;customer_service_metric&lt;/b&gt; resource supports a limited set of marketplaces. For a complete list of the supported marketplaces, please see the &lt;a href=&quot;https://www.ebay.com/help/policies/selling-policies/seller-performance-policy/service-metrics-policy?id=4769#section2&quot; title=&quot;eBay Help pages&quot; target=&quot;_blank&quot;&gt;Service metrics policy&lt;/a&gt; page.
      * @param value Value to set for the marketplaceId property.
      */
-    public void setMarketplaceId(@jakarta.annotation.Nullable final String value) {
+    public void setMarketplaceId(@jakarta.annotation.Nullable final MarketplaceIdEnum value) {
         this.marketplaceId = value;
     }
 }

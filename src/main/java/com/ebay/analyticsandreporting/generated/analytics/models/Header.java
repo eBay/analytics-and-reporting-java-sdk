@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type that defines the headers for the dimension keys and metrics returned in the report.
+ * This type defines the headers for the dimension keys and metrics returned in the report.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class Header implements AdditionalDataHolder, Parsable {

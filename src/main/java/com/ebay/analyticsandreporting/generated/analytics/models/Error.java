@@ -14,6 +14,7 @@
 
 package com.ebay.analyticsandreporting.generated.analytics.models;
 
+import com.microsoft.kiota.ApiException;
 import com.microsoft.kiota.serialization.AdditionalDataHolder;
 import com.microsoft.kiota.serialization.Parsable;
 import com.microsoft.kiota.serialization.ParseNode;
@@ -22,48 +23,48 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type that defines the fields that can be returned in an error.
+ * This type defines the fields that can be returned in an error.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
-public class Error implements AdditionalDataHolder, Parsable {
+public class Error extends ApiException implements AdditionalDataHolder, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     private Map<String, Object> additionalData;
     /**
-     * Identifies whether the error was in the REQUEST or happened when running the APPLICATION.
+     * Identifies the type of error.
      */
     private String category;
     /**
-     * The primary system where the error occurred. This is relevant for application errors. For Analytics errors, it always has the value &lt;code&gt;API_ANALYTICS&lt;/code&gt;.
+     * Name for the primary system where the error occurred. This is relevant for application errors.
      */
     private String domain;
     /**
-     * A positive integer that uniquely identifies the specific error condition that occurred. Your application can use error codes as identifiers in your customized error-handling algorithms. Traffic report error IDs range from 50001 to 50500.
+     * A unique number to identify the error.
      */
     private Integer errorId;
     /**
-     * Identifies specific request elements associated with the error, if any. inputRefId&apos;s response is format specific. For JSON, use &lt;i&gt;JSONPath&lt;/i&gt; notation.
+     * An array of request elements most closely associated to the error.
      */
     private java.util.List<String> inputRefIds;
     /**
-     * A more detailed explanation of the error than given in the &lt;code&gt;message&lt;/code&gt; error field.
+     * A more detailed explanation of the error.
      */
     private String longMessage;
     /**
-     * Information on how to correct the problem, in the end user&apos;s terms and language where applicable. Its value is at most 50 characters long. If applicable, the value is localized in the end user&apos;s requested locale.
+     * Information on how to correct the problem, in the end user&apos;s terms and language where applicable.
      */
     private String message;
     /**
-     * Identifies specific response elements associated with the error, if any. Path format is the same as &lt;code&gt;inputRefId&lt;/code&gt;.
+     * An array of request elements most closely associated to the error.
      */
     private java.util.List<String> outputRefIds;
     /**
-     * This optional list of name/value pairs that contain context-specific &lt;code&gt;ErrorParameter&lt;/code&gt; objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each &lt;code&gt;ErrorParameter&lt;/code&gt; object consists of two fields, a &lt;code&gt;name&lt;/code&gt; and a &lt;code&gt;value&lt;/code&gt;.
+     * An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.
      */
     private java.util.List<ErrorParameter> parameters;
     /**
-     * If present, indicates which subsystem in which the error occurred.
+     * Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc.
      */
     private String subdomain;
     /**
@@ -91,7 +92,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the category property value. Identifies whether the error was in the REQUEST or happened when running the APPLICATION.
+     * Gets the category property value. Identifies the type of error.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -99,7 +100,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.category;
     }
     /**
-     * Gets the domain property value. The primary system where the error occurred. This is relevant for application errors. For Analytics errors, it always has the value &lt;code&gt;API_ANALYTICS&lt;/code&gt;.
+     * Gets the domain property value. Name for the primary system where the error occurred. This is relevant for application errors.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,7 +108,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.domain;
     }
     /**
-     * Gets the errorId property value. A positive integer that uniquely identifies the specific error condition that occurred. Your application can use error codes as identifiers in your customized error-handling algorithms. Traffic report error IDs range from 50001 to 50500.
+     * Gets the errorId property value. A unique number to identify the error.
      * @return a {@link Integer}
      */
     @jakarta.annotation.Nullable
@@ -133,7 +134,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the inputRefIds property value. Identifies specific request elements associated with the error, if any. inputRefId&apos;s response is format specific. For JSON, use &lt;i&gt;JSONPath&lt;/i&gt; notation.
+     * Gets the inputRefIds property value. An array of request elements most closely associated to the error.
      * @return a {@link java.util.List<String>}
      */
     @jakarta.annotation.Nullable
@@ -141,7 +142,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.inputRefIds;
     }
     /**
-     * Gets the longMessage property value. A more detailed explanation of the error than given in the &lt;code&gt;message&lt;/code&gt; error field.
+     * Gets the longMessage property value. A more detailed explanation of the error.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -149,15 +150,24 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.longMessage;
     }
     /**
-     * Gets the message property value. Information on how to correct the problem, in the end user&apos;s terms and language where applicable. Its value is at most 50 characters long. If applicable, the value is localized in the end user&apos;s requested locale.
+     * The primary error message.
+     * @return a {@link String}
+     */
+    @jakarta.annotation.Nonnull
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
+    /**
+     * Gets the message property value. Information on how to correct the problem, in the end user&apos;s terms and language where applicable.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
-    public String getMessage() {
+    public String getMessageEscaped() {
         return this.message;
     }
     /**
-     * Gets the outputRefIds property value. Identifies specific response elements associated with the error, if any. Path format is the same as &lt;code&gt;inputRefId&lt;/code&gt;.
+     * Gets the outputRefIds property value. An array of request elements most closely associated to the error.
      * @return a {@link java.util.List<String>}
      */
     @jakarta.annotation.Nullable
@@ -165,7 +175,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.outputRefIds;
     }
     /**
-     * Gets the parameters property value. This optional list of name/value pairs that contain context-specific &lt;code&gt;ErrorParameter&lt;/code&gt; objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each &lt;code&gt;ErrorParameter&lt;/code&gt; object consists of two fields, a &lt;code&gt;name&lt;/code&gt; and a &lt;code&gt;value&lt;/code&gt;.
+     * Gets the parameters property value. An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.
      * @return a {@link java.util.List<ErrorParameter>}
      */
     @jakarta.annotation.Nullable
@@ -173,7 +183,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         return this.parameters;
     }
     /**
-     * Gets the subdomain property value. If present, indicates which subsystem in which the error occurred.
+     * Gets the subdomain property value. Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -191,7 +201,7 @@ public class Error implements AdditionalDataHolder, Parsable {
         writer.writeIntegerValue("errorId", this.getErrorId());
         writer.writeCollectionOfPrimitiveValues("inputRefIds", this.getInputRefIds());
         writer.writeStringValue("longMessage", this.getLongMessage());
-        writer.writeStringValue("message", this.getMessage());
+        writer.writeStringValue("message", this.getMessageEscaped());
         writer.writeCollectionOfPrimitiveValues("outputRefIds", this.getOutputRefIds());
         writer.writeCollectionOfObjectValues("parameters", this.getParameters());
         writer.writeStringValue("subdomain", this.getSubdomain());
@@ -205,63 +215,63 @@ public class Error implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the category property value. Identifies whether the error was in the REQUEST or happened when running the APPLICATION.
+     * Sets the category property value. Identifies the type of error.
      * @param value Value to set for the category property.
      */
     public void setCategory(@jakarta.annotation.Nullable final String value) {
         this.category = value;
     }
     /**
-     * Sets the domain property value. The primary system where the error occurred. This is relevant for application errors. For Analytics errors, it always has the value &lt;code&gt;API_ANALYTICS&lt;/code&gt;.
+     * Sets the domain property value. Name for the primary system where the error occurred. This is relevant for application errors.
      * @param value Value to set for the domain property.
      */
     public void setDomain(@jakarta.annotation.Nullable final String value) {
         this.domain = value;
     }
     /**
-     * Sets the errorId property value. A positive integer that uniquely identifies the specific error condition that occurred. Your application can use error codes as identifiers in your customized error-handling algorithms. Traffic report error IDs range from 50001 to 50500.
+     * Sets the errorId property value. A unique number to identify the error.
      * @param value Value to set for the errorId property.
      */
     public void setErrorId(@jakarta.annotation.Nullable final Integer value) {
         this.errorId = value;
     }
     /**
-     * Sets the inputRefIds property value. Identifies specific request elements associated with the error, if any. inputRefId&apos;s response is format specific. For JSON, use &lt;i&gt;JSONPath&lt;/i&gt; notation.
+     * Sets the inputRefIds property value. An array of request elements most closely associated to the error.
      * @param value Value to set for the inputRefIds property.
      */
     public void setInputRefIds(@jakarta.annotation.Nullable final java.util.List<String> value) {
         this.inputRefIds = value;
     }
     /**
-     * Sets the longMessage property value. A more detailed explanation of the error than given in the &lt;code&gt;message&lt;/code&gt; error field.
+     * Sets the longMessage property value. A more detailed explanation of the error.
      * @param value Value to set for the longMessage property.
      */
     public void setLongMessage(@jakarta.annotation.Nullable final String value) {
         this.longMessage = value;
     }
     /**
-     * Sets the message property value. Information on how to correct the problem, in the end user&apos;s terms and language where applicable. Its value is at most 50 characters long. If applicable, the value is localized in the end user&apos;s requested locale.
+     * Sets the message property value. Information on how to correct the problem, in the end user&apos;s terms and language where applicable.
      * @param value Value to set for the message property.
      */
     public void setMessage(@jakarta.annotation.Nullable final String value) {
         this.message = value;
     }
     /**
-     * Sets the outputRefIds property value. Identifies specific response elements associated with the error, if any. Path format is the same as &lt;code&gt;inputRefId&lt;/code&gt;.
+     * Sets the outputRefIds property value. An array of request elements most closely associated to the error.
      * @param value Value to set for the outputRefIds property.
      */
     public void setOutputRefIds(@jakarta.annotation.Nullable final java.util.List<String> value) {
         this.outputRefIds = value;
     }
     /**
-     * Sets the parameters property value. This optional list of name/value pairs that contain context-specific &lt;code&gt;ErrorParameter&lt;/code&gt; objects, with each item in the list being a parameter (or input field name) that caused an error condition. Each &lt;code&gt;ErrorParameter&lt;/code&gt; object consists of two fields, a &lt;code&gt;name&lt;/code&gt; and a &lt;code&gt;value&lt;/code&gt;.
+     * Sets the parameters property value. An array of name/value pairs that describe details the error condition. These are useful when multiple errors are returned.
      * @param value Value to set for the parameters property.
      */
     public void setParameters(@jakarta.annotation.Nullable final java.util.List<ErrorParameter> value) {
         this.parameters = value;
     }
     /**
-     * Sets the subdomain property value. If present, indicates which subsystem in which the error occurred.
+     * Sets the subdomain property value. Further helps indicate which subsystem the error is coming from. System subcategories include: Initialization, Serialization, Security, Monitoring, Rate Limiting, etc.
      * @param value Value to set for the subdomain property.
      */
     public void setSubdomain(@jakarta.annotation.Nullable final String value) {

@@ -35,11 +35,11 @@ public class Report implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<Metadata> dimensionMetadata;
     /**
-     *   &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;a href=&quot;#response.lastUpdatedDate&quot;&gt;lastUpdatedDate&lt;/a&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;b&gt;lastUpdatedDate&lt;/b&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      */
     private String endDate;
     /**
-     * Type that defines the headers for the dimension keys and metrics returned in the report.
+     * A complex type containing the header for the report.
      */
     private Header header;
     /**
@@ -57,7 +57,7 @@ public class Report implements AdditionalDataHolder, Parsable {
     /**
      * An array of any process errors or warnings that were generated during the processing of the call processing.
      */
-    private java.util.List<Error> warnings;
+    private java.util.List<ErrorDetailV3> warnings;
     /**
      * Instantiates a new {@link Report} and sets the default values.
      */
@@ -91,7 +91,7 @@ public class Report implements AdditionalDataHolder, Parsable {
         return this.dimensionMetadata;
     }
     /**
-     * Gets the endDate property value.   &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;a href=&quot;#response.lastUpdatedDate&quot;&gt;lastUpdatedDate&lt;/a&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Gets the endDate property value. The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;b&gt;lastUpdatedDate&lt;/b&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -111,11 +111,11 @@ public class Report implements AdditionalDataHolder, Parsable {
         deserializerMap.put("lastUpdatedDate", (n) -> { this.setLastUpdatedDate(n.getStringValue()); });
         deserializerMap.put("records", (n) -> { this.setRecords(n.getCollectionOfObjectValues(Record::createFromDiscriminatorValue)); });
         deserializerMap.put("startDate", (n) -> { this.setStartDate(n.getStringValue()); });
-        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(Error::createFromDiscriminatorValue)); });
+        deserializerMap.put("warnings", (n) -> { this.setWarnings(n.getCollectionOfObjectValues(ErrorDetailV3::createFromDiscriminatorValue)); });
         return deserializerMap;
     }
     /**
-     * Gets the header property value. Type that defines the headers for the dimension keys and metrics returned in the report.
+     * Gets the header property value. A complex type containing the header for the report.
      * @return a {@link Header}
      */
     @jakarta.annotation.Nullable
@@ -148,10 +148,10 @@ public class Report implements AdditionalDataHolder, Parsable {
     }
     /**
      * Gets the warnings property value. An array of any process errors or warnings that were generated during the processing of the call processing.
-     * @return a {@link java.util.List<Error>}
+     * @return a {@link java.util.List<ErrorDetailV3>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Error> getWarnings() {
+    public java.util.List<ErrorDetailV3> getWarnings() {
         return this.warnings;
     }
     /**
@@ -184,14 +184,14 @@ public class Report implements AdditionalDataHolder, Parsable {
         this.dimensionMetadata = value;
     }
     /**
-     * Sets the endDate property value.   &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;a href=&quot;#response.lastUpdatedDate&quot;&gt;lastUpdatedDate&lt;/a&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
+     * Sets the endDate property value. The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock.  &lt;br&gt;&lt;br&gt;If you specify an end date that is beyond the &lt;b&gt;lastUpdatedDate&lt;/b&gt; value, eBay returns a report that contains data only up to the lastUpdateDate date. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-20T07:09:00.000Z&lt;/code&gt;
      * @param value Value to set for the endDate property.
      */
     public void setEndDate(@jakarta.annotation.Nullable final String value) {
         this.endDate = value;
     }
     /**
-     * Sets the header property value. Type that defines the headers for the dimension keys and metrics returned in the report.
+     * Sets the header property value. A complex type containing the header for the report.
      * @param value Value to set for the header property.
      */
     public void setHeader(@jakarta.annotation.Nullable final Header value) {
@@ -222,7 +222,7 @@ public class Report implements AdditionalDataHolder, Parsable {
      * Sets the warnings property value. An array of any process errors or warnings that were generated during the processing of the call processing.
      * @param value Value to set for the warnings property.
      */
-    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<Error> value) {
+    public void setWarnings(@jakarta.annotation.Nullable final java.util.List<ErrorDetailV3> value) {
         this.warnings = value;
     }
 }

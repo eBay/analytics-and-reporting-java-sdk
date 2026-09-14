@@ -31,9 +31,9 @@ public class Definition implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:DataTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;.
      */
-    private String dataType;
+    private SrlDataTypeEnum dataType;
     /**
      * The value the &lt;b&gt;dimension&lt;/b&gt; or &lt;b&gt;metric&lt;/b&gt; parameter as submitted in the request.
      */
@@ -67,11 +67,11 @@ public class Definition implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the dataType property value. Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:DataTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the dataType property value. Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;.
+     * @return a {@link SrlDataTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getDataType() {
+    public SrlDataTypeEnum getDataType() {
         return this.dataType;
     }
     /**
@@ -81,7 +81,7 @@ public class Definition implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
-        deserializerMap.put("dataType", (n) -> { this.setDataType(n.getStringValue()); });
+        deserializerMap.put("dataType", (n) -> { this.setDataType(n.getEnumValue(SrlDataTypeEnum::forValue)); });
         deserializerMap.put("key", (n) -> { this.setKey(n.getStringValue()); });
         deserializerMap.put("localizedName", (n) -> { this.setLocalizedName(n.getStringValue()); });
         return deserializerMap;
@@ -108,7 +108,7 @@ public class Definition implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("dataType", this.getDataType());
+        writer.writeEnumValue("dataType", this.getDataType());
         writer.writeStringValue("key", this.getKey());
         writer.writeStringValue("localizedName", this.getLocalizedName());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -121,10 +121,10 @@ public class Definition implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the dataType property value. Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:DataTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the dataType property value. Indicates the data type of the returned dimension. For example, if the &lt;b&gt;dimension&lt;/b&gt; is &lt;code&gt;day&lt;/code&gt;, the data type is &lt;code&gt;DATE&lt;/code&gt;.
      * @param value Value to set for the dataType property.
      */
-    public void setDataType(@jakarta.annotation.Nullable final String value) {
+    public void setDataType(@jakarta.annotation.Nullable final SrlDataTypeEnum value) {
         this.dataType = value;
     }
     /**

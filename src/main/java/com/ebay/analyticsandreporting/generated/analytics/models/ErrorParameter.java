@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * A complex type that defines an error and error message.
+ * Used to specify information relevant to the end user/client.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class ErrorParameter implements AdditionalDataHolder, Parsable {
@@ -31,11 +31,11 @@ public class ErrorParameter implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * Name of the entity that threw the error.
+     * The name of the parameter that caused the error.
      */
     private String name;
     /**
-     * A description of the error.
+     * The value of the parameter that caused the error.
      */
     private String value;
     /**
@@ -74,7 +74,7 @@ public class ErrorParameter implements AdditionalDataHolder, Parsable {
         return deserializerMap;
     }
     /**
-     * Gets the name property value. Name of the entity that threw the error.
+     * Gets the name property value. The name of the parameter that caused the error.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -82,7 +82,7 @@ public class ErrorParameter implements AdditionalDataHolder, Parsable {
         return this.name;
     }
     /**
-     * Gets the value property value. A description of the error.
+     * Gets the value property value. The value of the parameter that caused the error.
      * @return a {@link String}
      */
     @jakarta.annotation.Nullable
@@ -107,14 +107,14 @@ public class ErrorParameter implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the name property value. Name of the entity that threw the error.
+     * Sets the name property value. The name of the parameter that caused the error.
      * @param value Value to set for the name property.
      */
     public void setName(@jakarta.annotation.Nullable final String value) {
         this.name = value;
     }
     /**
-     * Sets the value property value. A description of the error.
+     * Sets the value property value. The value of the parameter that caused the error.
      * @param value Value to set for the value property.
      */
     public void setValue(@jakarta.annotation.Nullable final String value) {

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * A complex type that describes a program cycle.
+ * A complex type that specifies the profile&apos;s evaluation cycle (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;), the date the evaluation was calculated, and  the month to which the evaluation pertains.  &lt;br&gt;&lt;br&gt;Each program has at least one cycle, but a program can include both cycle types.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class Cycle implements AdditionalDataHolder, Parsable {
@@ -31,9 +31,9 @@ public class Cycle implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:CycleTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested.
      */
-    private String cycleType;
+    private CycleTypeEnum cycleType;
     /**
      * The date and time at which the standard compliance values were determined for the profile.  &lt;br&gt;&lt;br&gt;The time stamp is formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; target=&quot;_blank&quot;&gt;ISO 8601&lt;/a&gt; string, which is based on the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;b&gt;Format:&lt;/b&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;b&gt;Example:&lt;/b&gt; &lt;code&gt;2018-08-04T07:09:00.000Z&lt;/code&gt;
      */
@@ -67,11 +67,11 @@ public class Cycle implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the cycleType property value. The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:CycleTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the cycleType property value. The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested.
+     * @return a {@link CycleTypeEnum}
      */
     @jakarta.annotation.Nullable
-    public String getCycleType() {
+    public CycleTypeEnum getCycleType() {
         return this.cycleType;
     }
     /**
@@ -97,7 +97,7 @@ public class Cycle implements AdditionalDataHolder, Parsable {
     @jakarta.annotation.Nonnull
     public Map<String, java.util.function.Consumer<ParseNode>> getFieldDeserializers() {
         final HashMap<String, java.util.function.Consumer<ParseNode>> deserializerMap = new HashMap<String, java.util.function.Consumer<ParseNode>>(3);
-        deserializerMap.put("cycleType", (n) -> { this.setCycleType(n.getStringValue()); });
+        deserializerMap.put("cycleType", (n) -> { this.setCycleType(n.getEnumValue(CycleTypeEnum::forValue)); });
         deserializerMap.put("evaluationDate", (n) -> { this.setEvaluationDate(n.getStringValue()); });
         deserializerMap.put("evaluationMonth", (n) -> { this.setEvaluationMonth(n.getStringValue()); });
         return deserializerMap;
@@ -108,7 +108,7 @@ public class Cycle implements AdditionalDataHolder, Parsable {
      */
     public void serialize(@jakarta.annotation.Nonnull final SerializationWriter writer) {
         Objects.requireNonNull(writer);
-        writer.writeStringValue("cycleType", this.getCycleType());
+        writer.writeEnumValue("cycleType", this.getCycleType());
         writer.writeStringValue("evaluationDate", this.getEvaluationDate());
         writer.writeStringValue("evaluationMonth", this.getEvaluationMonth());
         writer.writeAdditionalData(this.getAdditionalData());
@@ -121,10 +121,10 @@ public class Cycle implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the cycleType property value. The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:CycleTypeEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the cycleType property value. The cycle type, either &lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;. &lt;br&gt;&lt;br&gt;&lt;code&gt;CURRENT&lt;/code&gt; means the profile&apos;s metrics values are from the most recent official eBay  monthly standards evaluation. &lt;code&gt;PROJECTED&lt;/code&gt; means the profile values were determined when the profile was requested.
      * @param value Value to set for the cycleType property.
      */
-    public void setCycleType(@jakarta.annotation.Nullable final String value) {
+    public void setCycleType(@jakarta.annotation.Nullable final CycleTypeEnum value) {
         this.cycleType = value;
     }
     /**

@@ -35,7 +35,7 @@ public class MetadataRecord implements AdditionalDataHolder, Parsable {
      */
     private java.util.List<Value> metadataValues;
     /**
-     * A complex type that contains a value, plus the veracity of that value.
+     * The value of the key on which the report is based. &lt;br&gt;&lt;br&gt;For example, if the key is the listing ID, the value of this container could be: &lt;br&gt;&lt;br&gt;&lt;code&gt;&quot;value&quot;: {&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;value&quot;: &quot;142133954229&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;applicable&quot;: true&lt;br&gt;}&lt;/code&gt;
      */
     private Value value;
     /**
@@ -82,7 +82,7 @@ public class MetadataRecord implements AdditionalDataHolder, Parsable {
         return this.metadataValues;
     }
     /**
-     * Gets the value property value. A complex type that contains a value, plus the veracity of that value.
+     * Gets the value property value. The value of the key on which the report is based. &lt;br&gt;&lt;br&gt;For example, if the key is the listing ID, the value of this container could be: &lt;br&gt;&lt;br&gt;&lt;code&gt;&quot;value&quot;: {&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;value&quot;: &quot;142133954229&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;applicable&quot;: true&lt;br&gt;}&lt;/code&gt;
      * @return a {@link Value}
      */
     @jakarta.annotation.Nullable
@@ -114,7 +114,7 @@ public class MetadataRecord implements AdditionalDataHolder, Parsable {
         this.metadataValues = value;
     }
     /**
-     * Sets the value property value. A complex type that contains a value, plus the veracity of that value.
+     * Sets the value property value. The value of the key on which the report is based. &lt;br&gt;&lt;br&gt;For example, if the key is the listing ID, the value of this container could be: &lt;br&gt;&lt;br&gt;&lt;code&gt;&quot;value&quot;: {&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;value&quot;: &quot;142133954229&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;applicable&quot;: true&lt;br&gt;}&lt;/code&gt;
      * @param value Value to set for the value property.
      */
     public void setValue(@jakarta.annotation.Nullable final Value value) {

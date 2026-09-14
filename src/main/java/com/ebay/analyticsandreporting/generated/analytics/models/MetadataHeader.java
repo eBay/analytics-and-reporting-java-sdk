@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 /**
- * Type that defines the metadata header fields.
+ * This type defines the metadata header fields.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
 public class MetadataHeader implements AdditionalDataHolder, Parsable {

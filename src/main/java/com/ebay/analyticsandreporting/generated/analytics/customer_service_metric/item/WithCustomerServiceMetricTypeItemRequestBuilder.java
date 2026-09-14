@@ -26,7 +26,7 @@ import java.util.Objects;
 public class WithCustomerServiceMetricTypeItemRequestBuilder extends BaseRequestBuilder {
     /**
      * Gets an item from the com.ebay.analyticsandreporting.generated.analytics.customer_service_metric.item.item collection
-     * @param evaluation_type Use this path parameter to specify the evaluation period to use for the performance metrics. See &lt;a href=&quot;/api-docs/sell/analytics/types/api:EvaluationTypeEnum&quot; target=&quot;_blank&quot;&gt; EvaluationTypeEnum&lt;/a&gt; for more information on the supported values.
+     * @param evaluation_type Use this path parameter to specify the evaluation period to use for the performance metrics. See &lt;a href=&quot;/develop/api/sell/analytics_api#sell-analytics_api-customer_service_metric-getcustomerservicemetric.evaluationtypeenum&quot;&gt; EvaluationTypeEnum&lt;/a&gt; for more information on the supported values.
      * @return a {@link WithEvaluationTypeItemRequestBuilder}
      */
     @jakarta.annotation.Nonnull

@@ -31,7 +31,7 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
      */
     private Map<String, Object> additionalData;
     /**
-     * A complex type that describes a program cycle.
+     * A complex type that specifies the profile&apos;s evaluation cycle (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;), the date the evaluation was calculated, and  the month to which the evaluation pertains.  &lt;br&gt;&lt;br&gt;Each program has at least one cycle, but a program can include both cycle types.
      */
     private Cycle cycle;
     /**
@@ -45,15 +45,15 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
     /**
      * A list of the metrics upon which a seller&apos;s profile is evaluated.  &lt;br&gt;&lt;br&gt;Each program&apos;s applicable metrics and requirements are listed at &lt;a href=&quot;http://www.sps.ebay.com/sd/sdrequirements&quot; target=&quot;_blank&quot;&gt;eBay Top Rated seller program standards&lt;/a&gt;.
      */
-    private java.util.List<Metric> metrics;
+    private java.util.List<SspMetric> metrics;
     /**
-     * Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:ProgramEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;.
      */
-    private String program;
+    private ProgramEnum program;
     /**
-     * The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:StandardsLevelEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;.
      */
-    private String standardsLevel;
+    private StandardsLevelEnum standardsLevel;
     /**
      * Instantiates a new {@link StandardsProfile} and sets the default values.
      */
@@ -79,7 +79,7 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the cycle property value. A complex type that describes a program cycle.
+     * Gets the cycle property value. A complex type that specifies the profile&apos;s evaluation cycle (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;), the date the evaluation was calculated, and  the month to which the evaluation pertains.  &lt;br&gt;&lt;br&gt;Each program has at least one cycle, but a program can include both cycle types.
      * @return a {@link Cycle}
      */
     @jakarta.annotation.Nullable
@@ -112,33 +112,33 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
         deserializerMap.put("cycle", (n) -> { this.setCycle(n.getObjectValue(Cycle::createFromDiscriminatorValue)); });
         deserializerMap.put("defaultProgram", (n) -> { this.setDefaultProgram(n.getBooleanValue()); });
         deserializerMap.put("evaluationReason", (n) -> { this.setEvaluationReason(n.getStringValue()); });
-        deserializerMap.put("metrics", (n) -> { this.setMetrics(n.getCollectionOfObjectValues(Metric::createFromDiscriminatorValue)); });
-        deserializerMap.put("program", (n) -> { this.setProgram(n.getStringValue()); });
-        deserializerMap.put("standardsLevel", (n) -> { this.setStandardsLevel(n.getStringValue()); });
+        deserializerMap.put("metrics", (n) -> { this.setMetrics(n.getCollectionOfObjectValues(SspMetric::createFromDiscriminatorValue)); });
+        deserializerMap.put("program", (n) -> { this.setProgram(n.getEnumValue(ProgramEnum::forValue)); });
+        deserializerMap.put("standardsLevel", (n) -> { this.setStandardsLevel(n.getEnumValue(StandardsLevelEnum::forValue)); });
         return deserializerMap;
     }
     /**
      * Gets the metrics property value. A list of the metrics upon which a seller&apos;s profile is evaluated.  &lt;br&gt;&lt;br&gt;Each program&apos;s applicable metrics and requirements are listed at &lt;a href=&quot;http://www.sps.ebay.com/sd/sdrequirements&quot; target=&quot;_blank&quot;&gt;eBay Top Rated seller program standards&lt;/a&gt;.
-     * @return a {@link java.util.List<Metric>}
+     * @return a {@link java.util.List<SspMetric>}
      */
     @jakarta.annotation.Nullable
-    public java.util.List<Metric> getMetrics() {
+    public java.util.List<SspMetric> getMetrics() {
         return this.metrics;
     }
     /**
-     * Gets the program property value. Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:ProgramEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the program property value. Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;.
+     * @return a {@link ProgramEnum}
      */
     @jakarta.annotation.Nullable
-    public String getProgram() {
+    public ProgramEnum getProgram() {
         return this.program;
     }
     /**
-     * Gets the standardsLevel property value. The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:StandardsLevelEnum&apos;&gt;eBay API documentation&lt;/a&gt;
-     * @return a {@link String}
+     * Gets the standardsLevel property value. The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;.
+     * @return a {@link StandardsLevelEnum}
      */
     @jakarta.annotation.Nullable
-    public String getStandardsLevel() {
+    public StandardsLevelEnum getStandardsLevel() {
         return this.standardsLevel;
     }
     /**
@@ -151,8 +151,8 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
         writer.writeBooleanValue("defaultProgram", this.getDefaultProgram());
         writer.writeStringValue("evaluationReason", this.getEvaluationReason());
         writer.writeCollectionOfObjectValues("metrics", this.getMetrics());
-        writer.writeStringValue("program", this.getProgram());
-        writer.writeStringValue("standardsLevel", this.getStandardsLevel());
+        writer.writeEnumValue("program", this.getProgram());
+        writer.writeEnumValue("standardsLevel", this.getStandardsLevel());
         writer.writeAdditionalData(this.getAdditionalData());
     }
     /**
@@ -163,7 +163,7 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the cycle property value. A complex type that describes a program cycle.
+     * Sets the cycle property value. A complex type that specifies the profile&apos;s evaluation cycle (&lt;code&gt;CURRENT&lt;/code&gt; or &lt;code&gt;PROJECTED&lt;/code&gt;), the date the evaluation was calculated, and  the month to which the evaluation pertains.  &lt;br&gt;&lt;br&gt;Each program has at least one cycle, but a program can include both cycle types.
      * @param value Value to set for the cycle property.
      */
     public void setCycle(@jakarta.annotation.Nullable final Cycle value) {
@@ -187,21 +187,21 @@ public class StandardsProfile implements AdditionalDataHolder, Parsable {
      * Sets the metrics property value. A list of the metrics upon which a seller&apos;s profile is evaluated.  &lt;br&gt;&lt;br&gt;Each program&apos;s applicable metrics and requirements are listed at &lt;a href=&quot;http://www.sps.ebay.com/sd/sdrequirements&quot; target=&quot;_blank&quot;&gt;eBay Top Rated seller program standards&lt;/a&gt;.
      * @param value Value to set for the metrics property.
      */
-    public void setMetrics(@jakarta.annotation.Nullable final java.util.List<Metric> value) {
+    public void setMetrics(@jakarta.annotation.Nullable final java.util.List<SspMetric> value) {
         this.metrics = value;
     }
     /**
-     * Sets the program property value. Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:ProgramEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the program property value. Indicates the program used to generate the profile data. Values can be &lt;code&gt;PROGRAM_DE&lt;/code&gt;, &lt;code&gt;PROGRAM_UK&lt;/code&gt;, &lt;code&gt;PROGRAM_US&lt;/code&gt;, or &lt;code&gt;PROGRAM_GLOBAL&lt;/code&gt;.
      * @param value Value to set for the program property.
      */
-    public void setProgram(@jakarta.annotation.Nullable final String value) {
+    public void setProgram(@jakarta.annotation.Nullable final ProgramEnum value) {
         this.program = value;
     }
     /**
-     * Sets the standardsLevel property value. The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;. For implementation help, refer to &lt;a href=&apos;https://developer.ebay.com/api-docs/sell/analytics/types/ssp:StandardsLevelEnum&apos;&gt;eBay API documentation&lt;/a&gt;
+     * Sets the standardsLevel property value. The overall standards level of the seller, one of &lt;code&gt;TOP_RATED&lt;/code&gt;, &lt;code&gt;ABOVE_STANDARD&lt;/code&gt;, or &lt;code&gt;BELOW_STANDARD&lt;/code&gt;.
      * @param value Value to set for the standardsLevel property.
      */
-    public void setStandardsLevel(@jakarta.annotation.Nullable final String value) {
+    public void setStandardsLevel(@jakarta.annotation.Nullable final StandardsLevelEnum value) {
         this.standardsLevel = value;
     }
 }

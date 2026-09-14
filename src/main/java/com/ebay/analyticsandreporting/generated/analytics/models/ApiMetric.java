@@ -25,13 +25,13 @@ import java.util.Objects;
  * This complex data type defines the details of the customer service metric and benchmark data related to the associated &lt;b&gt;dimension&lt;/b&gt;.
  */
 @jakarta.annotation.Generated("com.microsoft.kiota")
-public class Metric implements AdditionalDataHolder, Parsable {
+public class ApiMetric implements AdditionalDataHolder, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     private Map<String, Object> additionalData;
     /**
-     * This complex type defines the benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; value of the metric for the group (the benchmark) and the seller&apos;s overall &lt;b&gt;rating&lt;/b&gt; when compared to the benchmark.
+     * This complex type defines a set of benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; rating for the group included in the benchmark evaluation and the seller&apos;s calculated customer service metric rating for the benchmark.  &lt;br&gt;&lt;br&gt;This container is returned only if the associated &lt;b&gt;metricKey&lt;/b&gt; value is &lt;code&gt;RATE&lt;/code&gt;.
      */
     private MetricBenchmark benchmark;
     /**
@@ -47,20 +47,20 @@ public class Metric implements AdditionalDataHolder, Parsable {
      */
     private String value;
     /**
-     * Instantiates a new {@link Metric} and sets the default values.
+     * Instantiates a new {@link ApiMetric} and sets the default values.
      */
-    public Metric() {
+    public ApiMetric() {
         this.setAdditionalData(new HashMap<>());
     }
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param parseNode The parse node to use to read the discriminator value and create the object
-     * @return a {@link Metric}
+     * @return a {@link ApiMetric}
      */
     @jakarta.annotation.Nonnull
-    public static Metric createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
+    public static ApiMetric createFromDiscriminatorValue(@jakarta.annotation.Nonnull final ParseNode parseNode) {
         Objects.requireNonNull(parseNode);
-        return new Metric();
+        return new ApiMetric();
     }
     /**
      * Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -71,7 +71,7 @@ public class Metric implements AdditionalDataHolder, Parsable {
         return this.additionalData;
     }
     /**
-     * Gets the benchmark property value. This complex type defines the benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; value of the metric for the group (the benchmark) and the seller&apos;s overall &lt;b&gt;rating&lt;/b&gt; when compared to the benchmark.
+     * Gets the benchmark property value. This complex type defines a set of benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; rating for the group included in the benchmark evaluation and the seller&apos;s calculated customer service metric rating for the benchmark.  &lt;br&gt;&lt;br&gt;This container is returned only if the associated &lt;b&gt;metricKey&lt;/b&gt; value is &lt;code&gt;RATE&lt;/code&gt;.
      * @return a {@link MetricBenchmark}
      */
     @jakarta.annotation.Nullable
@@ -135,7 +135,7 @@ public class Metric implements AdditionalDataHolder, Parsable {
         this.additionalData = value;
     }
     /**
-     * Sets the benchmark property value. This complex type defines the benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; value of the metric for the group (the benchmark) and the seller&apos;s overall &lt;b&gt;rating&lt;/b&gt; when compared to the benchmark.
+     * Sets the benchmark property value. This complex type defines a set of benchmark data, which includes the &lt;b&gt;average&lt;/b&gt; rating for the group included in the benchmark evaluation and the seller&apos;s calculated customer service metric rating for the benchmark.  &lt;br&gt;&lt;br&gt;This container is returned only if the associated &lt;b&gt;metricKey&lt;/b&gt; value is &lt;code&gt;RATE&lt;/code&gt;.
      * @param value Value to set for the benchmark property.
      */
     public void setBenchmark(@jakarta.annotation.Nullable final MetricBenchmark value) {
