@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.ebay"
-version = "0.1.0"
+version = "0.2.0"
 
 java {
     toolchain { languageVersion.set(JavaLanguageVersion.of(17)) }
@@ -57,7 +57,7 @@ publishing {
             from(components["java"])
             groupId = "com.ebay"
             artifactId = "analytics-and-reporting-java-sdk"
-            version = "1.0.0"
+            version = "0.2.0"
         }
     }
 }
